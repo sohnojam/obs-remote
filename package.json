@@ -1,0 +1,22 @@
+{
+  "name": "obs-remote",
+  "version": "0.1.0",
+  "description": "OBS Studio remote intended for use with Raspberry Pi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sohnojam/obs-remote.git"
+  },
+  "author": "João 'Jam' Moraes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sohnojam/obs-remote/issues"
+  },
+  "homepage": "https://github.com/sohnojam/obs-remote#readme",
+  "dependencies": {
+    "obs-websocket-js": "^4.0.2"
+  }
+}
