@@ -218,6 +218,8 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetMute', {source: 'Mic', mute: false})
         .catch(error => console.error(error))
 
+      state = 'main'
+
     }
 
   }
