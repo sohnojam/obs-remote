@@ -245,8 +245,8 @@ process.stdin.on('keypress', (ch, key) => {
 
   }
 
-  // F11 = Abort
-  if (key && key.name == 'f11') {
+  // F10/F11 = Abort
+  if (key && (key.name == 'f11' || key.name == 'f10')) {
 
     if (state === 'end') {
 
