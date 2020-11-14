@@ -4,6 +4,7 @@
   "description": "OBS Studio remote intended for use with Raspberry Pi",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/sohnojam/obs-remote#readme",
   "dependencies": {
+    "keypress": "^0.2.1",
     "obs-websocket-js": "^4.0.2"
   }
 }
