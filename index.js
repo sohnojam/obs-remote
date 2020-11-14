@@ -61,6 +61,7 @@ process.stdin.on('keypress', (ch, key) => {
     if (state === 'init') {
 
       obs.connect(obsConfig)
+        .catch(error => console.error(error))
 
     }
 
