@@ -19,14 +19,6 @@ function handleAuthSuccess(data) {
 
   console.log('authentication success')
 
-  state = 'main'
-  
-  obs.send('SetCurrentTransition', {'transition-name': 'Fade'})
-    .catch(error => console.error(error))
-
-  obs.send('SetTransitionDuration', {duration: 500})
-    .catch(error => console.error(error))
-
 }
 
 function handleAuthFailure(data) {
@@ -61,6 +53,17 @@ process.stdin.on('keypress', (ch, key) => {
     if (state === 'init') {
 
       obs.connect(obsConfig)
+        .then(() => {
+
+          state = 'main'
+
+          obs.send('SetCurrentTransition', {'transition-name': 'Fade'})
+            .catch(error => console.error(error))
+
+          obs.send('SetTransitionDuration', {duration: 500})
+            .catch(error => console.error(error))
+
+        })
         .catch(error => console.error(error))
 
     }
