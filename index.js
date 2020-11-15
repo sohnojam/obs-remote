@@ -195,7 +195,6 @@ process.stdin.on('keypress', (ch, key) => {
 
     if (state === 'break') {
 
-      delete tempResources['breakTo']
       state = 'main'
 
     }
@@ -217,8 +216,6 @@ process.stdin.on('keypress', (ch, key) => {
         .catch(error => console.error(error))
 
       state = 'main'
-
-      delete tempResources['breakTo']
 
     }
 
