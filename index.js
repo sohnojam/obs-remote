@@ -210,8 +210,6 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetCurrentScene', {'scene-name': tempResources['breakTo'] || 'Blank'})
         .catch(error => console.error(error))
 
-      delete tempResources['breakTo']
-
       obs.send('SetMute', {source: 'Desktop', mute: false})
         .catch(error => console.error(error))
 
@@ -219,6 +217,8 @@ process.stdin.on('keypress', (ch, key) => {
         .catch(error => console.error(error))
 
       state = 'main'
+
+      delete tempResources['breakTo']
 
     }
 
