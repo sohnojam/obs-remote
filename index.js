@@ -116,9 +116,6 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetSceneItemRender', {'scene-name': 'Starting', source: 'Start Timer', render: true})
         .catch(error => console.error(error))
 
-      obs.send('RestartMedia', {sourceName: 'Ticker (Timer)'})
-        .catch(error => console.error(error))
-
     }
 
   }
