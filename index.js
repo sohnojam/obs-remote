@@ -126,6 +126,7 @@ process.stdin.on('keypress', (ch, key) => {
     if (state === 'start') {
 
       delete tempResources['startTo']
+
       state = 'main'
 
     }
@@ -137,13 +138,15 @@ process.stdin.on('keypress', (ch, key) => {
 
     if (state === 'start') {
 
+      const startTo = tempResources['startTo']
+
+      delete tempResources['startTo']
+
       obs.send('SetTransitionDuration', {duration: 2000})
         .catch(error => console.error(error))
 
-      obs.send('SetCurrentScene', {'scene-name': tempResources['startTo'] || 'Blank'})
+      obs.send('SetCurrentScene', {'scene-name': startTo || 'Blank'})
         .catch(error => console.error(error))
-
-      delete tempResources['startTo']
 
       obs.send('SetMute', {source: 'Desktop', mute: false})
         .catch(error => console.error(error))
@@ -206,7 +209,11 @@ process.stdin.on('keypress', (ch, key) => {
 
     if (state === 'break') {
 
-      obs.send('SetCurrentScene', {'scene-name': tempResources['breakTo'] || 'Blank'})
+      const breakTo = tempResources['breakTo']
+
+      delete tempResources['breakTo']
+
+      obs.send('SetCurrentScene', {'scene-name': 'breakTo' || 'Blank'})
         .catch(error => console.error(error))
 
       obs.send('SetMute', {source: 'Desktop', mute: false})
