@@ -57,12 +57,6 @@ process.stdin.on('keypress', (ch, key) => {
 
           state = 'main'
 
-          obs.send('SetCurrentTransition', {'transition-name': 'Fade'})
-            .catch(error => console.error(error))
-
-          obs.send('SetTransitionDuration', {duration: 500})
-            .catch(error => console.error(error))
-
         })
         .catch(error => console.error(error))
 
@@ -142,9 +136,6 @@ process.stdin.on('keypress', (ch, key) => {
 
       delete tempResources['startTo']
 
-      obs.send('SetTransitionDuration', {duration: 2000})
-        .catch(error => console.error(error))
-
       obs.send('SetCurrentScene', {'scene-name': startTo || 'Blank'})
         .catch(error => console.error(error))
 
@@ -152,9 +143,6 @@ process.stdin.on('keypress', (ch, key) => {
         .catch(error => console.error(error))
 
       obs.send('SetMute', {source: 'Mic', mute: false})
-        .catch(error => console.error(error))
-
-      obs.send('SetTransitionDuration', {duration: 500})
         .catch(error => console.error(error))
 
       state = 'main'
