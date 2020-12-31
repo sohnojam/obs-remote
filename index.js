@@ -253,7 +253,7 @@ process.stdin.on('keypress', (ch, key) => {
   }
 
   //
-  // Scenes (Q, W, E, A, S, D, F, Z, X, C)
+  // Scenes (Q, W, E, R, A, S, D, F, Z, X, C)
   //
   // Q = Starting
   if (key && key.name == 'q') {
@@ -285,6 +285,18 @@ process.stdin.on('keypress', (ch, key) => {
     if (state === 'main') {
 
       obs.send('SetCurrentScene', {'scene-name': 'Ending'})
+        .catch(error => console.error(error))
+
+    }
+
+  }
+
+  // R = Blank
+  if (key && key.name == 'r') {
+
+    if (state === 'main') {
+
+      obs.send('SetCurrentScene', {'scene-name': 'Blank'})
         .catch(error => console.error(error))
 
     }
