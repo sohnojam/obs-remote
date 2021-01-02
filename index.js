@@ -403,6 +403,14 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetMute', {source: 'Desktop', mute: true})
         .catch(error => console.error(error))
 
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Desktop Aux', mute: true})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: true})
+        .catch(error => console.error(error))
+
     }
 
   }
@@ -430,14 +438,6 @@ process.stdin.on('keypress', (ch, key) => {
     if (state === 'main') {
 
       obs.send('SetMute', {source: 'Desktop Aux', mute: true})
-        .catch(error => console.error(error))
-
-    } else if (state === 'start') {
-
-      obs.send('SetMute', {source: 'Desktop Aux', mute: true})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: true})
         .catch(error => console.error(error))
 
     } else if (state !== 'init') {
@@ -477,6 +477,14 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetMute', {source: 'Desktop', mute: false})
         .catch(error => console.error(error))
 
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Desktop Aux', mute: false})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: false})
+        .catch(error => console.error(error))
+
     }
 
   }
@@ -504,14 +512,6 @@ process.stdin.on('keypress', (ch, key) => {
     if (state === 'main') {
 
       obs.send('SetMute', {source: 'Desktop Aux', mute: false})
-        .catch(error => console.error(error))
-
-    } else if (state === 'start') {
-
-      obs.send('SetMute', {source: 'Desktop Aux', mute: false})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: false})
         .catch(error => console.error(error))
 
     } else if (state !== 'init') {
