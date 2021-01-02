@@ -432,6 +432,14 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetMute', {source: 'Desktop Aux', mute: true})
         .catch(error => console.error(error))
 
+    } else if (state === 'start') {
+
+      obs.send('SetMute', {source: 'Desktop Aux', mute: true})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: true})
+        .catch(error => console.error(error))
+
     } else if (state !== 'init') {
 
       obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: true})
@@ -498,6 +506,14 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetMute', {source: 'Desktop Aux', mute: false})
         .catch(error => console.error(error))
 
+    } else if (state === 'start') {
+
+      obs.send('SetMute', {source: 'Desktop Aux', mute: false})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: false})
+        .catch(error => console.error(error))
+
     } else if (state !== 'init') {
 
       obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: false})
@@ -511,7 +527,7 @@ process.stdin.on('keypress', (ch, key) => {
   // Remote control
   //
   // Ctrl+C = Stop capturing keys
-  if (key && key.ctrl && key.name == 'c') {
+  if (key && key.ctrl && key.name == 'v') {
 
     process.stdin.pause()
     process.stdin.setRawMode(false)
