@@ -96,7 +96,7 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetMute', {source: 'Mic (Title)', mute: true})
         .catch(error => console.error(error))
 
-      obs.send('SetMute', {source: 'Desktop Aux (Title', mute: true})
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: true})
         .catch(error => console.error(error))
 
       obs.send('SetSceneItemRender', {'scene-name': 'Starting', source: 'Start Timer', render: false})
