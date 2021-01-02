@@ -84,10 +84,19 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetCurrentScene', {'scene-name': 'Starting'})
         .catch(error => console.error(error))
 
-      obs.send('SetMute', {source: 'Desktop', mute: true})
+      obs.send('SetMute', {source: 'Desktop', mute: false})
         .catch(error => console.error(error))
 
-      obs.send('SetMute', {source: 'Mic', mute: true})
+      obs.send('SetMute', {source: 'Mic', mute: false})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Desktop Aux', mute: true})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Mic (Title)', mute: true})
+        .catch(error => console.error(error))
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title', mute: true})
         .catch(error => console.error(error))
 
       obs.send('SetSceneItemRender', {'scene-name': 'Starting', source: 'Start Timer', render: false})
@@ -139,12 +148,6 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetCurrentScene', {'scene-name': startTo || 'Blank'})
         .catch(error => console.error(error))
 
-      obs.send('SetMute', {source: 'Desktop', mute: false})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Mic', mute: false})
-        .catch(error => console.error(error))
-
       state = 'main'
 
     }
@@ -169,12 +172,6 @@ process.stdin.on('keypress', (ch, key) => {
         .catch(error => console.error(error))
 
       obs.send('SetCurrentScene', {'scene-name': 'BRB'})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Desktop', mute: true})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Mic', mute: true})
         .catch(error => console.error(error))
 
     }
@@ -206,12 +203,6 @@ process.stdin.on('keypress', (ch, key) => {
       obs.send('SetCurrentScene', {'scene-name': breakTo || 'Blank'})
         .catch(error => console.error(error))
 
-      obs.send('SetMute', {source: 'Desktop', mute: false})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Mic', mute: false})
-        .catch(error => console.error(error))
-
       state = 'main'
 
     }
@@ -229,12 +220,6 @@ process.stdin.on('keypress', (ch, key) => {
       state = 'end'
 
       obs.send('SetCurrentScene', {'scene-name': 'Ending'})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Desktop', mute: true})
-        .catch(error => console.error(error))
-
-      obs.send('SetMute', {source: 'Mic', mute: true})
         .catch(error => console.error(error))
 
     }
@@ -393,12 +378,17 @@ process.stdin.on('keypress', (ch, key) => {
   // U = Mute all audio sources
   if (key && key.name == 'u') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
       obs.send('SetMute', {source: 'Desktop', mute: true})
         .catch(error => console.error(error))
 
       obs.send('SetMute', {source: 'Mic', mute: true})
+        .catch(error => console.error(error))
+
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Mic (Title)', mute: true})
         .catch(error => console.error(error))
 
     }
@@ -408,7 +398,7 @@ process.stdin.on('keypress', (ch, key) => {
   // I = Mute desktop audio source
   if (key && key.name == 'i') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
       obs.send('SetMute', {source: 'Desktop', mute: true})
         .catch(error => console.error(error))
@@ -420,21 +410,31 @@ process.stdin.on('keypress', (ch, key) => {
   // O = Mute mic audio source
   if (key && key.name == 'o') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
       obs.send('SetMute', {source: 'Mic', mute: true})
+        .catch(error => console.error(error))
+
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Mic (Title)', mute: true})
         .catch(error => console.error(error))
 
     }
 
   }
 
-  // P = Hide webcam source
+  // P = Mute auxiliary desktop audio source
   if (key && key.name == 'p') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
-      obs.send('SetSourceFilterVisibility', {sourceName: 'Webcam', filterName: 'Hide', filterEnabled: true})
+      obs.send('SetMute', {source: 'Desktop Aux', mute: true})
+        .catch(error => console.error(error))
+
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: true})
         .catch(error => console.error(error))
 
     }
@@ -444,12 +444,17 @@ process.stdin.on('keypress', (ch, key) => {
   // J = Unmute all audio sources
   if (key && key.name == 'j') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
       obs.send('SetMute', {source: 'Desktop', mute: false})
         .catch(error => console.error(error))
 
       obs.send('SetMute', {source: 'Mic', mute: false})
+        .catch(error => console.error(error))
+
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Mic (Title)', mute: false})
         .catch(error => console.error(error))
 
     }
@@ -459,7 +464,7 @@ process.stdin.on('keypress', (ch, key) => {
   // K = Unmute desktop audio source
   if (key && key.name == 'k') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
       obs.send('SetMute', {source: 'Desktop', mute: false})
         .catch(error => console.error(error))
@@ -468,24 +473,34 @@ process.stdin.on('keypress', (ch, key) => {
 
   }
 
-  // L = Mute mic audio source
+  // L = Unmute mic audio source
   if (key && key.name == 'l') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
       obs.send('SetMute', {source: 'Mic', mute: false})
+        .catch(error => console.error(error))
+
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Mic (Title)', mute: false})
         .catch(error => console.error(error))
 
     }
 
   }
 
-  // ; = Hide webcam source
+  // ; = Unmute auxiliary desktop audio source
   if (!key && ch == ';') {
 
-    if (state !== 'init') {
+    if (state === 'main') {
 
-      obs.send('SetSourceFilterVisibility', {sourceName: 'Webcam', filterName: 'Hide', filterEnabled: false})
+      obs.send('SetMute', {source: 'Desktop Aux', mute: false})
+        .catch(error => console.error(error))
+
+    } else if (state !== 'init') {
+
+      obs.send('SetMute', {source: 'Desktop Aux (Title)', mute: false})
         .catch(error => console.error(error))
 
     }
